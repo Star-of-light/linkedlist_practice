@@ -56,7 +56,16 @@ void printList(Node *head)
  */
 int getLength(Node *head)
 {
+    int count = 0;
     // TODO
+    Node *current = head;
+    while (current != nullptr)
+    {
+        count ++;
+      //  cout << current->data << " -> ";
+        current = current->next;
+    }
+    cout << count << endl;
     return 0;
 }
 
@@ -69,6 +78,13 @@ int getLength(Node *head)
 void insertAtFront(Node *&head, int value)
 {
     // TODO
+    Node *current = head;
+    while (current != nullptr)
+    {
+        cout << current->data << " -> ";
+        current = current->next;
+    }
+    cout << "NULL" << endl;
 }
 
 /**
