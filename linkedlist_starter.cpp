@@ -93,6 +93,21 @@ void insertAtFront(Node *&head, int value)
 void insertAtEnd(Node *&head, int value)
 {
     // TODO
+   
+    Node *new_node = new Node(value);
+    
+    if (head == nullptr) {
+        return new_node;
+    }
+    
+    Node *current = head;
+    while (current->next != nullptr) {
+        current = current->next;
+    }
+    
+    current->next = new_node;
+
+
 }
 /**
  * Runs the linked-list test cases.
