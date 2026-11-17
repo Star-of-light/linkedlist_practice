@@ -78,13 +78,10 @@ int getLength(Node *head)
 void insertAtFront(Node *&head, int value)
 {
     // TODO
-    Node *current = head;
-    while (current != nullptr)
-    {
-        cout << current->data << " -> ";
-        current = current->next;
-    }
-    cout << "NULL" << endl;
+    Node *newNode = new Node(value);
+    newNode -> next = head;
+    return newNode;
+    
 }
 
 /**
