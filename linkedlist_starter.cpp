@@ -125,6 +125,22 @@ void insertAtEnd(Node *&head, int value)
 void insertAtPosition(Node *&head, int value, int position)
 {
     // TODO
+    if (position <= 0 || head == nullptr) {
+        insertAtFront(head, value);
+        return;
+    }
+
+    Node* current = head;
+    int index = 0;
+    // Stop at the node right before the target position, or at the last node
+    while (current->next != nullptr && index < position - 1) {
+        current = current->next;
+        index++;
+         }
+
+    Node* newNode = new Node(value);
+    newNode->next = current->next;
+    current->next = newNode;
 }
 
 /**
@@ -136,6 +152,13 @@ void insertAtPosition(Node *&head, int value, int position)
 bool search(Node *head, int value)
 {
     // TODO
+     Node* current = head;
+    while (current != nullptr) {
+        if (current->data == value) {
+            return true;
+        }
+        current = current->next;
+    }
     return false;
 }
 
@@ -149,6 +172,10 @@ bool search(Node *head, int value)
 void deleteFront(Node *&head)
 {
     // TODO
+    if (head == nullptr) return;
+    Node* temp = head;
+    head = head->next;
+    delete temp;
 }
 
 /**
@@ -159,6 +186,20 @@ void deleteFront(Node *&head)
 void deleteEnd(Node *&head)
 {
     // TODO
+    if (head == nullptr) return;
+    if (head->next == nullptr) {
+        delete head;
+        head = nullptr;
+        return;
+         }
+
+    Node* current = head;
+    // Stop at the second-to-last node
+    while (current->next->next != nullptr) {
+        current = current->next;
+    }
+    delete current->next;
+    current->next = nullptr;
 }
 
 /**
@@ -170,6 +211,24 @@ void deleteEnd(Node *&head)
 bool deleteValue(Node *&head, int value)
 {
     // TODO
+    if (head == nullptr) return false;
+
+    if (head->data == value) {
+        deleteFront(head);
+        return true;
+    }
+
+    Node* current = head;
+    while (current->next != nullptr && current->next->data != value) {
+        current = current->next;
+    }
+
+    if (current->next != nullptr) {
+        Node* toDelete = current->next;
+        current->next = toDelete->next;
+        delete toDelete;
+        return true;
+    }
     return false;
 }
 
